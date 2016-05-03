@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+    <h2>Geolocalizacion</h2>
+    <p>Una de la APIs mas importantes debido a la movilidad de los dispoditivos en ela de Geolocalizacion. Esta API permite conocer las coordenadas del usuario por medio del recurso fisico ya sea el GPS o la tarjeta de red. Apesar pesar de que estas herramientas consumen recursos fisicos como el GPS, a diferencia de la dela bateria no lo hace de manera continua si no cuando ocurre algun evento. A pesar de esto, podemos confirar deiferentes eventos que pueden ocurrir durante la geolocalizacion como el movernos de lugar. Esta API por si sola solamente obtiene las coordenadas de longitus y latitud, para poder visualizarlas de manera grafica, necesitamos de otras herramientas como Google Maps que nos permite traducir esas coordenadas en posiicones en un mapa</p>
+    
+    <img id="mapa">
+    
+    <button onclick="geolocalizar()">Geolocalizareme</button>
+    
+    <script>
+        function geolocalizar(){
+            navigator.geolocation.getCurrentPosition(verPosicion);
+        }
+        
+        function verPosicion(posicion){
+            alert('LONG: '+ posicion.coords.longitude)
+            alert('LAT: '+ posicion.coords.latitude)
+            mapa = document.getElementById('mapa');
+            mapa.src="http://maps.googleapis.com/maps/api/staticmap?center="+posicion.coords.latitude + ',' + posicion.coords.longitude+"&zoom=15&size=500x500&markers=color:red%7Clabel:YO!%7c"+posicion.coords.latitude + ','+ posicion.coords.longitude;
+        }
+    
+    </script>
+    
+</body>
+</html>
